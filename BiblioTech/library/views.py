@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . import forms
 
 # Create your views here.
 
@@ -7,7 +8,9 @@ from django.http import HttpResponse
 #     return render(request, "library/home.html")
 
 def register(request):
-    return render(request, "library/register.html")
+    form = forms.UserRegisterForm()
+    return render(request, "library/register.html" ,{"form": form})
 
 def login(request):
-    return render(request, "library/login.html")
+    form = forms.UserRegisterForm()
+    return render(request, "library/login.html", {"form": form})
