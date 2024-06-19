@@ -4,12 +4,14 @@ from . import forms
 from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as auth_login
-
-
+from .models import Livre
 # Create your views here.
 
+
+    
 def home(request):
-    return render(request, "library/home.html")
+    livres = Livre.objects.all()
+    return render(request, "library/home.html", {"livres": livres})
 
 def register(request):
     if request.method == "POST":

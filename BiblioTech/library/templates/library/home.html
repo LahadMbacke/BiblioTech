@@ -2,33 +2,50 @@
 <html>
 <head>
     <title>Home</title>
-    <!-- <link rel="stylesheet" type="text/css" href="library/css/home.css"> -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'library/css/home.css' %}">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Hello  {{ (user.username).capiatlize() }}</h1>
+            <h1>Hello {{ user.username }}</h1>
             <h1>Welcome to BiblioTech</h1>
         </div>
+        <div class="nav-bar">
+            <ul>
+                <li><a href="library/home">Home</a></li>
+                <li><a href="library/books">Books</a></li>
+                <li><a href="library/authors">Authors</a></li>
+                <li><a href="library/publishers">Publishers</a></li>
+                <li><a href="library/categories">Categories</a></li>
+                <li><a href="library/transactions">Transactions</a></li>
+                <li><a href="library/users">Users</a></li>
+            </ul>
+        </div>
         <div class="content">
-            <div class="menu">
-                <ul>
-                    <li><a href="library/home">Home</a></li>
-                    <li><a href="library/books">Books</a></li>
-                    <li><a href="library/authors">Authors</a></li>
-                    <li><a href="library/publishers">Publishers</a></li>
-                    <li><a href="library/categories">Categories</a></li>
-                    <li><a href="library/transactions">Transactions</a></li>
-                    <li><a href="library/users">Users</a></li>
-                </ul>
-            </div>
             <div class="main">
                 <h2>Home</h2>
                 <p>Welcome to BiblioTech, a library management system.</p>
+            </div>
+        </div>
+        <div class="book-container">
+            <h1>Liste des Livres</h1>
+            <div class="books">
+                {% for livre in livres %}
+                <div class="book">
+                    <h3>{{ livre.titre }}</h3>
+                    <p><strong>Auteur:</strong> {{ livre.auteur }}</p>
+                    <p><strong>Catégorie:</strong> {{ livre.categorie }}</p>
+                    <p><strong>ISBN:</strong> {{ livre.isbn }}</p>
+                    <p><strong>Description:</strong> {{ livre.description }}</p>
+                    <p><strong>Disponibilité:</strong> {{ livre.disponibilite }}</p>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="footer">
             <p>&copy; 2019 BiblioTech</p>
         </div>
     </div>
+</body>
 </html>
